@@ -1,0 +1,92 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "bananas"
+    },
+    {
+      "id": 2,
+      "name": "strawberry milk"
+    },
+    {
+      "id": 3,
+      "name": "brown sugar"
+    },
+    {
+      "id": 4,
+      "name": "wheat flour"
+    },
+    {
+      "id": 5,
+      "name": "firm tofu"
+    },
+    {
+      "id": 6,
+      "name": "brocoli"
+    },
+    {
+      "id": 7,
+      "name": "chicken thighs"
+    },
+    {
+      "id": 8,
+      "name": "pork chops"
+    },
+    {
+      "id": 9,
+      "name": "green leaf lettuce"
+    },
+    {
+      "id": 10,
+      "name": "roma tomatoes"
+    },
+    {
+      "id": 11,
+      "name": "basmati rice"
+    },
+    {
+      "id": 12,
+      "name": "siracha mayonnaise"
+    },
+    {
+      "id": 13,
+      "name": "chocolate cookies"
+    },
+    {
+      "id": 14,
+      "name": "ice cream"
+    },
+    {
+      "id": 15,
+      "name": "coffee pods"
+    },
+    {
+      "id": 16,
+      "name": "diet coke"
+    },
+    {
+      "id": 17,
+      "name": "beef jerky"
+    },
+    {
+      "id": 18,
+      "name": "steel cut oats"
+    },
+    {
+      "id": 19,
+      "name": "couscous"
+    },
+    {
+      "id": 20,
+      "name": "shallots"
+    },
+    {
+      "id": 21,
+      "name": "beef bouillon"
+    },
+    {
+      "id": 22,
+      "name": "blueberries"
+    }
+  ]
+}

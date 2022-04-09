@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Pagination Logic Alpine JS</title>
+  <script defer src="https://unpkg.com/alpinejs@3.9.6/dist/cdn.min.js"></script>
+</head>
+<body x-data="alpineInit">
+
+  <ul class="list">
+    <template x-for="item in items" :key="item.id">
+      <li x-text="item.name"></li>
+    </template>
+  </ul>
+
+  <input type="button" @click="firstPage" value="first" x-bind:disabled="currentPage === 1" />
+  <input type="button" @click="prevPage" value="previous" x-bind:disabled="currentPage === 1" />
+  <span class="paginator">
+    <template x-for="(page, index) in totalPages" :key="index">
+      <button x-bind:value="index + 1" x-text="index + 1" @click="goToPage(index + 1)" x-bind:disabled="currentPage === (index + 1)"></button>
+    </template>
+  </span>
+  <input type="button" @click="nextPage" value="next" x-bind:disabled="currentPage == totalPages" />
+  <input type="button" @click="lastPage" value="last" x-bind:disabled="currentPage == totalPages" />
+
+  <script>
+    function alpineInit() {
+      return {
+        url: 'http://localhost:4000/items',
+        items: [],
+        buttons: [],
+        numberItems: 0,
+        currentPage: 1,
+        perPage: 5,
+        totalPages() {
+          return Math.ceil(this.numberItems / this.perPage);
+        },
+        firstPage () {
+          this.currentPage = 1;
+          this.fetchItems();
+        },
+        nextPage (e) {
+          if (this.currentPage >= this.totalPages()) {
+            return;
+          } else {
+            this.currentPage += 1;
+            this.fetchItems();
+          }
+        },
+        prevPage () {
+          if (this.currentPage <= 1) {
+            return;
+          } else {
+            this.currentPage -= 1;
+            this.fetchItems();
+          }
+        },
+        lastPage () {
+          this.currentPage = this.totalPages();
+          this.fetchItems();
+        },
+        goToPage (pageNumber) {
+          this.currentPage = pageNumber;
+          this.fetchItems();
+        },
+        fetchItems () {
+          fetch(`${this.url}?_page=${this.currentPage}&_limit=${this.perPage}`).then(response => {
+            this.numberItems = response.headers.get('X-Total-Count');
+            response.json().then(data => this.items = data);
+          })
+        },
+        init () {
+          this.fetchItems();
+          this.totalPages();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
