@@ -37,11 +37,11 @@
         totalPages() {
           return Math.ceil(this.numberItems / this.perPage);
         },
-        firstPage () {
+        firstPage() {
           this.currentPage = 1;
           this.fetchItems();
         },
-        nextPage () {
+        nextPage() {
           if (this.currentPage >= this.totalPages()) {
             return;
           } else {
@@ -49,7 +49,7 @@
             this.fetchItems();
           }
         },
-        prevPage () {
+        prevPage() {
           if (this.currentPage <= 1) {
             return;
           } else {
@@ -57,21 +57,21 @@
             this.fetchItems();
           }
         },
-        lastPage () {
+        lastPage() {
           this.currentPage = this.totalPages();
           this.fetchItems();
         },
-        goToPage (pageNumber) {
+        goToPage(pageNumber) {
           this.currentPage = pageNumber;
           this.fetchItems();
         },
-        fetchItems () {
+        fetchItems() {
           fetch(`${this.url}?_page=${this.currentPage}&_limit=${this.perPage}`).then(response => {
             this.numberItems = response.headers.get('X-Total-Count');
             response.json().then(data => this.items = data);
           })
         },
-        init () {
+        init() {
           this.fetchItems();
           this.totalPages();
         }
